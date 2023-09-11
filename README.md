@@ -1,2 +1,2 @@
-# SimpleEQ
-Simple Audio Plugin made using C++ and JUCE framework from a course
+# JUCE-plugins
+ Learning JUCE frameworking by creating simple plugins 
