@@ -77,6 +77,7 @@ public:
             buffer.applyGain (*gain);
         }
         else{
+            // Smoother change thanks to ramping
             buffer.applyGainRamp(0, buffer.getNumSamples(), previousGain, currentGain);
             previousGain = currentGain;
         }
@@ -100,16 +101,24 @@ public:
     void changeProgramName (int, const juce::String&) override   {}
 
     //==============================================================================
+    
     void getStateInformation (juce::MemoryBlock& destData) override
     {
-        // Writes current gain to memory
-        juce::MemoryOutputStream (destData, true).writeFloat (*gain);
+        std::unique_ptr<juce::XmlElement> xml (new juce::XmlElement ("ParamTutorial"));
+        xml->setAttribute ("gain", (double) *gain);
+        copyXmlToBinary (*xml, destData);
     }
 
     void setStateInformation (const void* data, int sizeInBytes) override
     {
         // Reads gain value from memory
-        *gain = juce::MemoryInputStream (data, static_cast<size_t> (sizeInBytes), false).readFloat();
+//        *gain = juce::MemoryInputStream (data, static_cast<size_t> (sizeInBytes), false).readFloat();
+        
+        std::unique_ptr<juce::XmlElement> xmlState (getXmlFromBinary (data, sizeInBytes));
+ 
+        if (xmlState.get() != nullptr)
+            if (xmlState->hasTagName ("ParamTutorial"))
+                *gain = (float) xmlState->getDoubleAttribute ("gain", 0.5);
     }
 
 private:
