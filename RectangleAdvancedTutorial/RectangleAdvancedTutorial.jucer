@@ -2,7 +2,8 @@
 
 <JUCERPROJECT name="RectangleAdvancedTutorial" companyName="JUCE" version="1.0.0"
               userNotes="Displays rectangles." companyWebsite="http://juce.com"
-              projectType="guiapp" useAppConfig="0" addUsingNamespaceToJuceHeader="1">
+              projectType="guiapp" useAppConfig="0" addUsingNamespaceToJuceHeader="1"
+              id="xCllyn" jucerFormatVersion="1">
   <MAINGROUP id="Gmplfs" name="RectangleAdvancedTutorial">
     <GROUP id="{3417722A-00C7-77E7-7DEC-B808408B83F6}" name="Source">
       <FILE id="LhDTg5" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
@@ -70,7 +71,8 @@
         <MODULEPATH id="juce_gui_basics" path=""/>
       </MODULEPATHS>
     </XCODE_IPHONE>
-    <ANDROIDSTUDIO targetFolder="Builds/Android" androidBluetoothNeeded="1">
+    <ANDROIDSTUDIO targetFolder="Builds/Android" androidBluetoothScanNeeded="1"
+                   androidBluetoothAdvertiseNeeded="1" androidBluetoothConnectNeeded="1">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="RectangleAdvancedTutorial"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="RectangleAdvancedTutorial"/>
