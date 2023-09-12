@@ -66,17 +66,20 @@ public:
     //==============================================================================
     void prepareToPlay (double, int) override
     {
-        previousGain = *gain;
+        auto phase = *invertPhase ? -1.0f : 1.0f;
+        previousGain = *gain * phase;
     }
     
     void releaseResources() override {}
 
     void processBlock (juce::AudioSampleBuffer& buffer, juce::MidiBuffer&) override
     {
-        auto currentGain = gain->get();
+        auto phase = *invertPhase ? -1.0f : 1.0f;  // [6]
+        auto currentGain = *gain * phase;          // [7]
+        
         
         if (juce::approximatelyEqual(currentGain, previousGain)){
-            buffer.applyGain (*gain);
+            buffer.applyGain (currentGain);
         }
         else{
             // Smoother change thanks to ramping
@@ -121,7 +124,7 @@ public:
  
         if (xmlState.get() != nullptr)
             if (xmlState->hasTagName ("ParamTutorial"))
-                *gain = (float) xmlState->getDoubleAttribute ("gain", 0.5);
+                *gain = (float) xmlState->getDoubleAttribute ("gain", 1.0);
                 *invertPhase = xmlState->getBoolAttribute ("invertPhase", false); // [5]
     }
 
