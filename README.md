@@ -1,4 +1,4 @@
-# JUCE-plugins
+# JUCE-framework
 Learning JUCE C++ framework for audio plugin software development.
 
 ## Parts
