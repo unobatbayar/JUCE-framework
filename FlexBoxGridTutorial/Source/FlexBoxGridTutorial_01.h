@@ -109,6 +109,7 @@ private:
 //                                       buttonSize,
 //                                       buttonSize);
 //            }
+            // Replace with FlexBox
             juce::FlexBox fb;                                               // [1]
             fb.flexWrap = juce::FlexBox::Wrap::wrap;                        // [2]
             fb.justifyContent = juce::FlexBox::JustifyContent::center;      // [3]
