@@ -72,14 +72,14 @@ public:
 
     void resized() override
     {
-        auto bounds = getLocalBounds();
-
-        auto panelWidth = bounds.getWidth() / 4;
-
-        leftPanel.setBounds  (bounds.removeFromLeft  (panelWidth));
-        rightPanel.setBounds (bounds.removeFromRight (panelWidth));
-
-        mainPanel.setBounds (bounds);
+        juce::FlexBox fb;
+ 
+        juce::FlexItem left  ((float) getWidth() / 4.0f, (float) getHeight(), leftPanel);
+        juce::FlexItem right ((float) getWidth() / 4.0f, (float) getHeight(), rightPanel);
+        juce::FlexItem main  ((float) getWidth() / 2.0f, (float) getHeight(), mainPanel);
+ 
+        fb.items.addArray ( { left, main, right } );
+        fb.performLayout (getLocalBounds());
     }
 
 private:
@@ -99,17 +99,6 @@ private:
 
         void resized() override
         {
-//            auto bounds = getLocalBounds();
-//            auto buttonSize = bounds.getWidth() / 3;
-//
-//            for (int i = 0; i < buttons.size(); ++i)
-//            {
-//                buttons[i]->setBounds (buttonSize * (i % 3),
-//                                       buttonSize * (i / 3) + bounds.getHeight() / 3,
-//                                       buttonSize,
-//                                       buttonSize);
-//            }
-            // Replace with FlexBox
             juce::FlexBox fb;                                               // [1]
             fb.flexWrap = juce::FlexBox::Wrap::wrap;                        // [2]
             fb.justifyContent = juce::FlexBox::JustifyContent::center;      // [3]
@@ -146,16 +135,21 @@ private:
 
         void resized() override
         {
-            auto bounds = getLocalBounds();
-            auto knobSize = bounds.getWidth() / 3;
-
-            for (int i = 0; i < knobs.size(); ++i)
-            {
-                knobs[i]->setBounds (knobSize * (i % 3),
-                                     bounds.getHeight() / 2 * (i / 3),
-                                     knobSize,
-                                     knobSize);
-            }
+            //==============================================================================
+            juce::FlexBox knobBox;
+            knobBox.flexWrap = juce::FlexBox::Wrap::wrap;
+            knobBox.justifyContent = juce::FlexBox::JustifyContent::spaceBetween;                                   // [1]
+ 
+            for (auto* k : knobs)
+                knobBox.items.add (juce::FlexItem (*k).withMinHeight (50.0f).withMinWidth (50.0f).withFlex (1));    // [2]
+ 
+            //==============================================================================
+            juce::FlexBox fb;                                                                                       // [3]
+            fb.flexDirection = juce::FlexBox::Direction::column;
+ 
+            fb.items.add (juce::FlexItem (knobBox).withFlex (2.5));                                                 // [4]
+ 
+            fb.performLayout (getLocalBounds());
         }
 
         juce::Colour backgroundColour;
@@ -180,15 +174,21 @@ private:
 
         void resized() override
         {
-            auto bounds = getLocalBounds();
-
-            auto sliderHeight = bounds.getHeight() / sliders.size();
-
-            for (auto* slider : sliders)
+            auto isPortrait = getLocalBounds().getHeight() > getLocalBounds().getWidth();                   // [1]
+            
+            juce::FlexBox fb;
+            fb.flexDirection = isPortrait ? juce::FlexBox::Direction::column                                // [2]
+            : juce::FlexBox::Direction::row;
+            
+            for (auto* s : sliders)
             {
-                slider->setSliderStyle (juce::Slider::SliderStyle::LinearHorizontal);
-                slider->setBounds (bounds.removeFromTop (sliderHeight));
+                s->setSliderStyle (isPortrait ? juce::Slider::SliderStyle::LinearHorizontal                 // [3]
+                                   : juce::Slider::SliderStyle::LinearVertical);
+                
+                fb.items.add (juce::FlexItem (*s).withFlex (0, 1, isPortrait ? (float) getHeight() / 5.0f   // [4]
+                                                            : (float) getWidth()  / 5.0f));
             }
+            fb.performLayout (getLocalBounds());
         }
 
         juce::OwnedArray<juce::Slider> sliders;
