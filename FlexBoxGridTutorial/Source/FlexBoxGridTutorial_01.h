@@ -99,16 +99,25 @@ private:
 
         void resized() override
         {
-            auto bounds = getLocalBounds();
-            auto buttonSize = bounds.getWidth() / 3;
-
-            for (int i = 0; i < buttons.size(); ++i)
-            {
-                buttons[i]->setBounds (buttonSize * (i % 3),
-                                       buttonSize * (i / 3) + bounds.getHeight() / 3,
-                                       buttonSize,
-                                       buttonSize);
-            }
+//            auto bounds = getLocalBounds();
+//            auto buttonSize = bounds.getWidth() / 3;
+//
+//            for (int i = 0; i < buttons.size(); ++i)
+//            {
+//                buttons[i]->setBounds (buttonSize * (i % 3),
+//                                       buttonSize * (i / 3) + bounds.getHeight() / 3,
+//                                       buttonSize,
+//                                       buttonSize);
+//            }
+            juce::FlexBox fb;                                               // [1]
+            fb.flexWrap = juce::FlexBox::Wrap::wrap;                        // [2]
+            fb.justifyContent = juce::FlexBox::JustifyContent::center;      // [3]
+            fb.alignContent = juce::FlexBox::AlignContent::center;          // [4]
+ 
+            for (auto* b : buttons)                                         // [5]
+                fb.items.add (juce::FlexItem (*b).withMinWidth (50.0f).withMinHeight (50.0f));
+ 
+            fb.performLayout (getLocalBounds());                            // [6]
         }
 
         juce::Colour backgroundColour;
