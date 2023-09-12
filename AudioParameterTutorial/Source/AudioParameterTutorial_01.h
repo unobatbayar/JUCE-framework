@@ -59,6 +59,8 @@ public:
                                                             "Gain", // parameter name
                                                             juce::NormalisableRange<float> (0.0f, 1.0f),
                                                             0.5f)); // default value
+        
+        addParameter (invertPhase = new juce::AudioParameterBool  (ParameterID { "invertPhase",  1 }, "Invert Phase", false)); // [3]
     }
 
     //==============================================================================
@@ -106,6 +108,7 @@ public:
     {
         std::unique_ptr<juce::XmlElement> xml (new juce::XmlElement ("ParamTutorial"));
         xml->setAttribute ("gain", (double) *gain);
+        xml->setAttribute ("invertPhase", *invertPhase); // [4]
         copyXmlToBinary (*xml, destData);
     }
 
@@ -119,11 +122,14 @@ public:
         if (xmlState.get() != nullptr)
             if (xmlState->hasTagName ("ParamTutorial"))
                 *gain = (float) xmlState->getDoubleAttribute ("gain", 0.5);
+                *invertPhase = xmlState->getBoolAttribute ("invertPhase", false); // [5]
     }
 
 private:
     //==============================================================================
     juce::AudioParameterFloat* gain;
+    juce::AudioParameterBool* invertPhase; // [2]
+    
     float previousGain; // [1]
 
     //==============================================================================
