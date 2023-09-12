@@ -74,6 +74,12 @@ public:
 
         orangeContent.setColour (juce::TextButton::buttonColourId, juce::Colours::orange);
         addAndMakeVisible (orangeContent);
+        
+        // Exercise
+        for (int i = 0; i < 5; ++i) {
+            exerciseContents[i].setColour(juce::TextButton::buttonColourId, juce::Colours::yellow);
+            addAndMakeVisible(exerciseContents[i]);
+        }
 
         setSize (400, 400);
     }
@@ -86,19 +92,23 @@ public:
     void resized() override
     {
         auto area = getLocalBounds();
-
+        
         auto headerFooterHeight = 36;
         header.setBounds (area.removeFromTop    (headerFooterHeight));
         footer.setBounds (area.removeFromBottom (headerFooterHeight));
 
         auto sidebarWidth = 80;
-        sidebar.setBounds (area.removeFromLeft (sidebarWidth)); // [2]
+        sidebar.setBounds (area.removeFromRight (juce::jmax (80, area.getWidth() / 4)));
 
         auto contentItemHeight = 24;
+        lemonContent.setBounds      (area.removeFromTop (contentItemHeight));
         orangeContent.setBounds     (area.removeFromTop (contentItemHeight));
         limeContent.setBounds       (area.removeFromTop (contentItemHeight)); // [1]
         grapefruitContent.setBounds (area.removeFromTop (contentItemHeight));
-        lemonContent.setBounds      (area.removeFromTop (contentItemHeight));
+        
+        for (int i = 0; i < 5; ++i) {
+            exerciseContents[i].setBounds (area.removeFromLeft (contentItemHeight));
+        }
     }
 
 private:
@@ -110,6 +120,9 @@ private:
     juce::TextButton lemonContent;
     juce::TextButton orangeContent;
     juce::TextButton footer;
+    
+    // Exercise
+    juce::TextButton exerciseContents[5];
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
