@@ -81,6 +81,22 @@ public:
             addAndMakeVisible(exerciseContents[i]);
         }
 
+        //...
+        sidebar.setColour (juce::TextButton::buttonColourId, juce::Colours::grey);
+        // [7]
+        addAndMakeVisible (sidebar);
+     
+        sideItemA.setColour (juce::TextButton::buttonColourId, juce::Colours::maroon);
+        sideItemB.setColour (juce::TextButton::buttonColourId, juce::Colours::maroon);
+        sideItemC.setColour (juce::TextButton::buttonColourId, juce::Colours::maroon);
+        sideItemA.setButtonText ("Item A");
+        sideItemB.setButtonText ("Item B");
+        sideItemC.setButtonText ("Item C");
+        addAndMakeVisible (sideItemA);
+        addAndMakeVisible (sideItemB);
+        addAndMakeVisible (sideItemC);
+        //...
+        
         setSize (400, 400);
     }
 
@@ -97,8 +113,14 @@ public:
         header.setBounds (area.removeFromTop    (headerFooterHeight));
         footer.setBounds (area.removeFromBottom (headerFooterHeight));
 
-        auto sidebarWidth = 80;
-        sidebar.setBounds (area.removeFromRight (juce::jmax (80, area.getWidth() / 4)));
+        auto sideBarArea = area.removeFromRight (juce::jmax (80, area.getWidth() / 4));
+        sidebar.setBounds (sideBarArea);
+     
+        auto sideItemHeight = 40;
+        auto sideItemMargin = 5;
+        sideItemA.setBounds (sideBarArea.removeFromTop (sideItemHeight).reduced (sideItemMargin));
+        sideItemB.setBounds (sideBarArea.removeFromTop (sideItemHeight).reduced (sideItemMargin));
+        sideItemC.setBounds (sideBarArea.removeFromTop (sideItemHeight).reduced (sideItemMargin));
 
         auto contentItemHeight = 24;
         lemonContent.setBounds      (area.removeFromTop (contentItemHeight));
@@ -115,6 +137,10 @@ private:
     juce::TextButton header;
     juce::TextButton sidebar;
 
+    juce::TextButton sideItemA; // [3]
+    juce::TextButton sideItemB; // [4]
+    juce::TextButton sideItemC; // [5]
+    
     juce::TextButton limeContent;
     juce::TextButton grapefruitContent;
     juce::TextButton lemonContent;
