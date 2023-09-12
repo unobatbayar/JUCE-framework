@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT name="FlexBoxGridTutorial" companyName="JUCE" version="1.0.0"
-              userNotes="Responsive layouts using FlexBox and Grid." companyWebsite="http://juce.com"
-              projectType="guiapp" useAppConfig="0" addUsingNamespaceToJuceHeader="1"
-              id="DPRyn2" jucerFormatVersion="1">
-  <MAINGROUP id="m5wiWE" name="FlexBoxGridTutorial">
-    <GROUP id="{B66FDAA6-1258-0E26-D640-24C6B95FF866}" name="Source">
-      <FILE id="vmPJ21" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
-      <FILE id="cz2RgQ" name="FlexBoxGridTutorial_01.h" compile="0" resource="0"
-            file="Source/FlexBoxGridTutorial_01.h"/>
+<JUCERPROJECT name="RectangleAdvancedTutorial" companyName="JUCE" version="1.0.0"
+              userNotes="Displays rectangles." companyWebsite="http://juce.com"
+              projectType="guiapp" useAppConfig="0" addUsingNamespaceToJuceHeader="1">
+  <MAINGROUP id="Gmplfs" name="RectangleAdvancedTutorial">
+    <GROUP id="{3417722A-00C7-77E7-7DEC-B808408B83F6}" name="Source">
+      <FILE id="LhDTg5" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+      <FILE id="jlbvFl" name="RectangleAdvancedTutorial.h" compile="0" resource="0"
+            file="Source/RectangleAdvancedTutorial.h"/>
     </GROUP>
   </MAINGROUP>
   <MODULES>
@@ -21,8 +20,8 @@
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="FlexBoxGridTutorial"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="FlexBoxGridTutorial"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="RectangleAdvancedTutorial"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="RectangleAdvancedTutorial"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path=""/>
@@ -34,8 +33,8 @@
     </XCODE_MAC>
     <VS2019 targetFolder="Builds/VisualStudio2019">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="FlexBoxGridTutorial"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="FlexBoxGridTutorial"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="RectangleAdvancedTutorial"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="RectangleAdvancedTutorial"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path=""/>
@@ -47,8 +46,8 @@
     </VS2019>
     <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="FlexBoxGridTutorial"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="FlexBoxGridTutorial"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="RectangleAdvancedTutorial"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="RectangleAdvancedTutorial"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path=""/>
@@ -60,8 +59,8 @@
     </LINUX_MAKE>
     <XCODE_IPHONE targetFolder="Builds/iOS">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="FlexBoxGridTutorial"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="FlexBoxGridTutorial"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="RectangleAdvancedTutorial"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="RectangleAdvancedTutorial"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path=""/>
@@ -71,11 +70,10 @@
         <MODULEPATH id="juce_gui_basics" path=""/>
       </MODULEPATHS>
     </XCODE_IPHONE>
-    <ANDROIDSTUDIO targetFolder="Builds/Android" androidBluetoothScanNeeded="1"
-                   androidBluetoothAdvertiseNeeded="1" androidBluetoothConnectNeeded="1">
+    <ANDROIDSTUDIO targetFolder="Builds/Android" androidBluetoothNeeded="1">
       <CONFIGURATIONS>
-        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="FlexBoxGridTutorial"/>
-        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="FlexBoxGridTutorial"/>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="RectangleAdvancedTutorial"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="RectangleAdvancedTutorial"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_core" path=""/>

@@ -4,7 +4,8 @@ Learning JUCE C++ framework for audio plugin development
 ## Parts
 
 - Part 1: [Tutorial: Adding plug-in parameters](https://docs.juce.com/master/tutorial_audio_parameter.html)
-- Part 2: [Tutorial: Responsive GUI layouts using FlexBox and Grid](https://docs.juce.com/master/tutorial_flex_box_grid.html)
+- Part 2: [Tutorial: Advanced GUI layout techniques](https://docs.juce.com/master/tutorial_rectangle_advanced.html)
+- Part 3: [Tutorial: Responsive GUI layouts using FlexBox and Grid](https://docs.juce.com/master/tutorial_flex_box_grid.html)
 
  ## Optional
 
